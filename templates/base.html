@@ -1,0 +1,188 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}АНО «Общественный Комитет»{% endblock %}</title>
+
+  <!-- Шрифт Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Основные стили -->
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}?v=2">
+</head>
+<body>
+
+  <!-- Шапка сайта -->
+  {% include 'includes/header.html' %}
+
+  <!-- Основной контент (с отступами) -->
+  <main class="site-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Подвал сайта -->
+  {% include 'includes/footer.html' %}
+
+  <!-- Модальное окно согласия -->
+  {% include 'includes/consent_modal.html' %}
+
+  <!-- Скрипты -->
+  <script src="{% static 'js/form_validation.js' %}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInput = document.querySelector('.custom-file-upload input[type="file"]');
+    const fileNameDisplay = document.querySelector('.file-name');
+
+    if (fileInput && fileNameDisplay) {
+      fileInput.addEventListener('change', function() {
+        const count = fileInput.files.length;
+        if (count > 0) {
+          if (count === 1) {
+            fileNameDisplay.textContent = fileInput.files[0].name;
+          } else {
+            fileNameDisplay.textContent = `Выбрано файлов: ${count}`;
+          }
+          fileNameDisplay.style.color = 'var(--primary)';
+          fileNameDisplay.style.fontWeight = '600';
+        } else {
+          fileNameDisplay.textContent = 'Файлы не выбраны';
+          fileNameDisplay.style.color = 'var(--text-muted)';
+          fileNameDisplay.style.fontWeight = 'normal';
+        }
+      });
+    }
+  });
+</script>
+  <!-- ЯНДЕКС МЕТРИКА -->
+  {% if YM_ID %}
+  <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym({{ YM_ID }}, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+      });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/{{ YM_ID }}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  {% endif %}
+
+  <!-- ... другие скрипты ... -->
+
+  <!-- Подключаем Cookie-баннер -->
+  {% include 'includes/cookie_banner.html' %}
+
+  <!-- Логика работы Cookie-баннера -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+
+      if (!banner) return;
+
+      // Проверяем, принимал ли пользователь согласие ранее
+      const isAccepted = localStorage.getItem('cookie_consent_accepted');
+
+      if (!isAccepted) {
+        // Если нет, показываем баннер через небольшую задержку (чтобы страница загрузилась)
+        setTimeout(() => {
+          banner.style.display = 'flex';
+        }, 1000);
+      }
+
+      // Обработка клика по кнопке "Согласен"
+      if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+          localStorage.setItem('cookie_consent_accepted', 'true');
+          banner.style.display = 'none'; // Прячем баннер
+        });
+      }
+    });
+  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerHeight = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('consent-modal');
+    const closeBtn = document.getElementById('close-consent-modal');
+
+    if (!modal) {
+      console.log('Ошибка: модальное окно не найдено в HTML');
+      return;
+    }
+
+    // Открытие окна при клике на любую ссылку с классом open-consent
+    document.querySelectorAll('.open-consent').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault(); // Отменяем переход по ссылке
+        modal.style.display = 'flex'; // Показываем окно
+      });
+    });
+
+    // Закрытие по крестику
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+    }
+
+    // Закрытие по клику на темный фон
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoBlock = document.querySelector('.reveal-logo');
+
+    if (logoBlock) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Когда блок виден на экране (скроллим вниз) — показываем логотип
+            logoBlock.classList.add('active');
+          } else {
+            // Когда блок уходит с экрана (скроллим вверх) — прячем логотип
+            logoBlock.classList.remove('active');
+          }
+        });
+      }, { threshold: 0.1 }); // Срабатывает, как только покажется 10% карточки
+
+      // Включаем слежку (и не выключаем её!)
+      observer.observe(logoBlock);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!-- templates/requisites/block.html -->
+{% load static %}
+<div class="requisites-container">
+
+  <!-- Верхняя часть: Реквизиты и Банк -->
+  <div class="requisites-grid">
+
+    <!-- Левая карточка: Реквизиты организации -->
+    <div class="req-card-white">
+      <h2 class="req-title">Реквизиты организации</h2>
+
+      <div class="req-item">
+        <strong>Полное наименование</strong>
+        <p>{{ ORG.full_name|default:"Автономная некоммерческая организация «Общественный Контроль»" }}</p>
+      </div>
+
+      <div class="req-row">
+        <div class="req-item">
+          <strong>ОГРН</strong>
+          <p>{{ ORG.ogrn|default:"1234567890123" }}</p>
+        </div>
+        <div class="req-item">
+          <strong>ИНН</strong>
+          <p>{{ ORG.inn|default:"1234567890" }}</p>
+        </div>
+        <div class="req-item">
+          <strong>КПП</strong>
+          <p>{{ ORG.kpp|default:"123456789" }}</p>
+        </div>
+      </div>
+
+      <div class="req-item">
+        <strong>Юридический адрес</strong>
+        <p>{{ ORG.legal_address|default:"362000, г. Владикавказ, ул. Тургеневская, д. 415" }}</p>
+      </div>
+
+      <div class="req-item" style="margin-bottom: 0;">
+        <strong>Руководитель</strong>
+        <p>{{ ORG.director_position|default:"Директор" }} {{ ORG.director_name|default:"Иванов Иван Иванович" }}</p>
+      </div>
+    </div>
+
+    <!-- Правая карточка: Банковские реквизиты -->
+    <div class="req-card-logo reveal-logo">
+      <!-- Замените 'logo.png' на имя вашего файла логотипа, если оно другое -->
+      <img src="{% static 'img/logo2.png' %}" alt="Логотип" class="req-logo-img" width="350">
+    </div>
+</div>
+  <div class="req-documents">
+    {% for doc in DOCUMENTS %}
+      <div class="doc-item">
+        <div class="doc-info">
+          <div class="doc-icon">
+            <!-- Иконка PDF -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A97E39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div>
+            <h3 class="doc-title">{{ doc.title }}</h3>
+            <span class="doc-badge">PDF</span>
+          </div>
+        </div>
+        <div class="doc-actions">
+          <a href="{{ doc.file.url }}" target="_blank" class="doc-btn">Смотреть PDF</a>
+          <a href="{{ doc.file.url }}" download class="doc-btn">Скачать PDF</a>
+        </div>
+      </div>
+    {% empty %}
+      <!-- Заглушка, если документов нет -->
+      <div class="doc-item">
+        <div class="doc-info">
+          <div class="doc-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A97E39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div>
+            <h3 class="doc-title">Устав организации</h3>
+            <span class="doc-badge">PDF</span>
+          </div>
+        </div>
+        <div class="doc-actions">
+          <a href="#" class="doc-btn">Смотреть PDF</a>
+          <a href="#" class="doc-btn">Скачать PDF</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>

@@ -1,0 +1,63 @@
+<div class="contacts-container">
+  <div class="contacts-grid">
+
+    <!-- Левая часть: Контактная информация -->
+    <div class="contacts-info">
+
+      <!-- Карточка 1: Адрес -->
+      <div class="contact-item">
+        <div class="contact-icon" style="background: #1A365D; color: #ffffff;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </div>
+        <div>
+          <h4>Юридический и фактический адрес</h4>
+          <p>{{ CONTACTS.actual_address|default:"362000, г. Владикавказ, ул. Тургеневская, д. 415" }}</p>
+        </div>
+      </div>
+
+
+
+
+      <!-- Карточка 3: Email -->
+      <div class="contact-item">
+        <div class="contact-icon" style="background: #1A365D; color: #ffffff;">
+         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <div>
+          <h4>Email</h4>
+          <a href="mailto:{{ CONTACTS.email }}">{{ CONTACTS.email|default:"info@example.ru" }}</a>
+        </div>
+      </div>
+
+      <!-- Соцсети -->
+      <div class="contact-socials">
+        <h4>Мы в соцсетях</h4>
+        <div class="social-links">
+          {% if CONTACTS.social_vk %}
+            <a href="{{ CONTACTS.social_vk }}" target="_blank" class="social-btn">ВКонтакте</a>
+          {% endif %}
+          {% if CONTACTS.social_tg %}
+            <a href="{{ CONTACTS.social_tg }}" target="_blank" class="social-btn">Telegram</a>
+          {% endif %}
+          {% if CONTACTS.social_ok %}
+            <a href="{{ CONTACTS.social_ok }}" target="_blank" class="social-btn">Одноклассники</a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Правая часть: Карта -->
+    <div class="contacts-map-wrapper">
+      {% if CONTACTS.yandex_map_url %}
+        <iframe src="{{ CONTACTS.yandex_map_url }}" class="contacts-map" frameborder="0" allowfullscreen></iframe>
+      {% else %}
+        <div class="contacts-map-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A0AEC0" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <p>Яндекс.Карта (добавьте ссылку в админке)</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>

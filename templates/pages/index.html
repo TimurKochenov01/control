@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Блок 1: Первый экран (Hero) -->
+<section class="hero">
+  <div class="container">
+    <div style="max-width: 700px;">
+      <h1>Общественный<br>Комитет</h1>
+      <p>
+        Защита прав граждан<br><br>
+        Контроль за деятельностью<br>
+        органов власти и организаций
+      </p>
+      <a href="#appeal" class="btn btn-hover-gold btn-hero">Сообщить о проблеме</a>
+    </div>
+  </div>
+</section>
+
+<!-- Блок 2: Bento Grid (О нас, Как мы работаем, Направления) -->
+<section id="about" class="section bento-section">
+  <div class="container">
+    <div class="bento-grid">
+
+            <!-- 1. О НАС -->
+      <div class="bento-item bento-about">
+        <span class="bento-badge">О нас</span>
+
+        <div class="about-scroll-box">
+          <p>Автономная некоммерческая организация «Общественный Комитет по общественному контролю» (сокращённое название — АНО «Общественный Комитет») создана для того, чтобы помогать гражданам отстаивать свои права и делать жизнь в нашей республике лучше. Мы действуем в рамках Федерального закона № 212-ФЗ «Об основах общественного контроля в Российской Федерации».</p>
+
+          <p>Наша работа — это практическая помощь по конкретным вопросам: мы принимаем обращения граждан, фиксируем нарушения, готовим официальные запросы и добиваемся устранения проблем. Если вы столкнулись с ямой на дороге, сломанной детской площадкой, поломанной остановкой или нарушением прав потребителя — мы поможем разобраться и доведём вопрос до результата.</p>
+
+          <p>Кроме общественного контроля, мы занимаемся правовым просвещением, поддерживаем социально значимые проекты и культурные инициативы, работаем с молодёжью и волонтёрами. Наша цель — не просто указать на проблему, а помочь её решить.</p>
+
+          <p>Мы открыты для сотрудничества с гражданами, общественными объединениями, бизнесом и органами власти. Если вам нужна помощь или вы хотите присоединиться к нашим проектам — свяжитесь с нами.</p>
+        </div>
+      </div>
+                  <!-- 2. КАК МЫ РАБОТАЕМ -->
+      <div class="bento-item bento-work reveal-trigger">
+        <span class="bento-badge">Как мы работаем</span>
+
+        <div class="work-steps">
+
+          <!-- Шаг 1: Вы сообщаете (СИНИЙ фон) -->
+          <div class="work-step reveal-step">
+            <div class="step-num" style="background: #1A365D; color: #ffffff; border: none;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Вы сообщаете</h4>
+              <p>Оставляете обращение через сайт.</p>
+            </div>
+          </div>
+
+          <!-- Шаг 2: Мы проверяем (ЗОЛОТОЙ фон) -->
+          <div class="work-step reveal-step">
+            <div class="step-num" style="background: #A97E39; color: #ffffff; border: none;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div>
+              <h4>Мы проверяем</h4>
+              <p>Анализируем ситуацию и запрашиваем данные.</p>
+            </div>
+          </div>
+
+          <!-- Шаг 3: Мы решаем (СИНИЙ фон) -->
+          <div class="work-step reveal-step">
+            <div class="step-num" style="background: #1A365D; color: #ffffff; border: none;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>Мы решаем</h4>
+              <p>Добиваемся справедливости и защиты прав.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. НАПРАВЛЕНИЯ (В ряд внизу) -->
+      <div class="bento-directions-wrapper" id="directions">
+        <span class="bento-badge" style="margin-bottom: 16px; display: inline-block;">Наши направления</span>
+        <div class="bento-directions-row">
+                     {% for d in DIRECTIONS %}
+            <!-- Заменили <a> на <div> и убрали href -->
+            <div class="direction-mini-card" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; {% if d.image %}background-image: url('{{ d.image.url }}'); background-size: cover; background-position: center;{% endif %}">
+
+              <!-- Контент карточки (текст) -->
+              <div style="position: relative; z-index: 2;">
+                <h4 class="direction-mini-title">{{ d.title }}</h4>
+                <p class="direction-mini-desc">{{ d.description|truncatechars:60 }}</p>
+              </div>
+            </div>
+          {% empty %}
+            <p style="grid-column: span 5; text-align: center; color: var(--text-muted);">Направления пока не добавлены.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Блок 3: Форма подачи обращения -->
+<section id="appeal" class="section" style="background-color: #1A365D;  background-color: var(--primary);
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 70%),
+    url('data:image/svg+xml;utf8,<svg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22><g fill=%22none%22 fill-rule=%22evenodd%22><g fill=%22%23ffffff%22 fill-opacity=%220.03%22><path d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/></g></g></svg>');
+  background-size: 100% 100%, 60px 60px;
+">">
+
+  <div class="container">
+
+    <!-- Белая карточка по центру -->
+    <div class="form-wrapper">
+
+      <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px; font-size: 2rem;">Подать обращение</h2>
+
+      <!-- Вывод сообщений об успехе или ошибке -->
+      {% if messages %}
+        {% for message in messages %}
+          <div style="padding: 15px; margin-bottom: 20px; border-radius: 8px; {% if message.tags == 'success' %}background: #C6F6D5; color: #22543D;{% else %}background: #FED7D7; color: #742A2A;{% endif %}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- Сама форма подключается сюда -->
+      {% include 'appeals/form_appeal.html' %}
+
+      <!-- Пояснение по 152-ФЗ -->
+      <div class="pdn-note" style="margin-top: 24px; font-size: 0.85rem; color: var(--text-muted); text-align: center;">
+        Отправляя форму, вы даёте согласие на обработку персональных данных в соответствии с <a href="{% url 'pages:privacy' %}" target="_blank" style="color: var(--primary); font-weight: 600;">Политикой обработки персональных данных</a>.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Блок 4: Реквизиты и документы -->
+<section id="requisites" class="section bg-white">
+  <div class="container">
+    <h2>Реквизиты и документы</h2>
+    {% include 'requisites/block.html' %}
+  </div>
+</section>
+
+<!-- Блок 5: Контакты -->
+<section id="contacts" class="section" style="background-color: #fffff;">
+  <div class="container">
+    <h2>Контакты</h2>
+    {% include 'contacts/block.html' %}
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const trigger = document.querySelector('.reveal-trigger');
+    const steps = document.querySelectorAll('.reveal-step');
+
+    if (!trigger || steps.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          steps.forEach((step, index) => {
+            setTimeout(() => {
+              step.classList.add('visible');
+            }, index * 600); // Задержка 0.6 сек
+          });
+          observer.unobserve(trigger);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(trigger);
+  });
+</script>
+{% endblock %}
+

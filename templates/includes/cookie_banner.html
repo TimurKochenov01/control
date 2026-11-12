@@ -1,0 +1,12 @@
+<!-- templates/includes/cookie_banner.html -->
+<div id="cookie-banner" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 900px; background: #ffffff; padding: 20px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9998; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid #E2E8F0;">
+
+  <div style="font-size: 0.95rem; color: #2D3748; line-height: 1.5;">
+    Мы используем файлы cookie и обрабатываем персональные данные для корректной работы сайта.
+    Подробнее — в <a href="{% url 'pages:privacy' %}" target="_blank" style="color: #2B6CB0; font-weight: 600; text-decoration: underline;">Политике обработки персональных данных</a>.
+  </div>
+
+  <button type="button" id="cookie-accept" class="btn" style="padding: 10px 24px; white-space: nowrap; font-size: 0.95rem;">
+    Согласен
+  </button>
+</div>
