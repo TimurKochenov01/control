@@ -47,10 +47,11 @@
 
     </div>
 
-    <!-- Правая часть: Карта -->
+        <!-- Правая часть: Карта -->
     <div class="contacts-map-wrapper">
       {% if CONTACTS.yandex_map_url %}
-        <iframe src="{{ CONTACTS.yandex_map_url }}" class="contacts-map" frameborder="0" allowfullscreen></iframe>
+        <!-- Оставили только iframe, убрали лишние div и a, задали 100% ширины/высоты -->
+        <iframe src="{{ CONTACTS.yandex_map_url }}" class="contacts-map" frameborder="0" allowfullscreen="true"></iframe>
       {% else %}
         <div class="contacts-map-placeholder">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A0AEC0" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>

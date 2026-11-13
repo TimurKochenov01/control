@@ -55,8 +55,8 @@ def index(request):
             try:
                 send_appeal_email(appeal)
                 appeal.email_sent = True
-            except Exception:
-                pass
+            except Exception as e:
+                print("ОШИБКА ОТПРАВКИ ПОЧТЫ:", e)
             try:
                 appeal.sheet_row_id = append_appeal_to_sheet(appeal) or ''
             except Exception:
