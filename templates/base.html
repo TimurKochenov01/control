@@ -84,32 +84,23 @@
   {% include 'includes/cookie_banner.html' %}
 
   <!-- Логика работы Cookie-баннера -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const banner = document.getElementById('cookie-banner');
-      const acceptBtn = document.getElementById('cookie-accept');
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
 
-      if (!banner) return;
+    if (!banner) return;
 
-      // Проверяем, принимал ли пользователь согласие ранее
-      const isAccepted = localStorage.getItem('cookie_consent_accepted');
+    // Принудительно показываем баннер при загрузке (для теста)
+    banner.style.display = 'flex';
 
-      if (!isAccepted) {
-        // Если нет, показываем баннер через небольшую задержку (чтобы страница загрузилась)
-        setTimeout(() => {
-          banner.style.display = 'flex';
-        }, 1000);
-      }
-
-      // Обработка клика по кнопке "Согласен"
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', function() {
-          localStorage.setItem('cookie_consent_accepted', 'true');
-          banner.style.display = 'none'; // Прячем баннер
-        });
-      }
-    });
-  </script>
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', function() {
+        banner.style.display = 'none';
+      });
+    }
+  });
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
