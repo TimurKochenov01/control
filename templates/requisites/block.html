@@ -1,8 +1,7 @@
-<!-- templates/requisites/block.html -->
 {% load static %}
 <div class="requisites-container">
 
-  <!-- Верхняя часть: Реквизиты и Банк -->
+  <!-- Верхняя часть: Реквизиты и Логотип -->
   <div class="requisites-grid">
 
     <!-- Левая карточка: Реквизиты организации -->
@@ -36,21 +35,24 @@
 
       <div class="req-item" style="margin-bottom: 0;">
         <strong>Руководитель</strong>
+        <!-- Убрали default:"Директор", вернули имя -->
         <p>{{ ORG.director_position }} {{ ORG.director_name }}</p>
       </div>
-
-    <!-- Правая карточка: Банковские реквизиты -->
-    <div class="req-card-logo reveal-logo">
-      <!-- Замените 'logo.png' на имя вашего файла логотипа, если оно другое -->
-      <img src="{% static 'img/logo2.png' %}" alt="Логотип" class="req-logo-img" width="350">
     </div>
-</div>
+
+    <!-- Правая карточка: Логотип (с анимацией) -->
+    <div class="req-card-logo reveal-logo">
+      <img src="{% static 'img/logo.png' %}" alt="Логотип" class="req-logo-img">
+    </div>
+
+  </div> <!-- ЗАКРЫВАЕТСЯ requisites-grid -->
+
+  <!-- Нижняя часть: Документы -->
   <div class="req-documents">
     {% for doc in DOCUMENTS %}
       <div class="doc-item">
         <div class="doc-info">
           <div class="doc-icon">
-            <!-- Иконка PDF -->
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A97E39" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
           </div>
           <div>
@@ -82,3 +84,5 @@
       </div>
     {% endfor %}
   </div>
+
+</div>
