@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-замени-мен
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ["TimurKochenov.pythonanywhere.com."]
+ALLOWED_HOSTS = ['timurkochenov.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
