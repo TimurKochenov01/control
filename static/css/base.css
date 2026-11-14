@@ -236,7 +236,7 @@ p { margin-bottom: 16px; }
   .header-inner { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; justify-content: center; }
   .brand { justify-content: center; font-size: 1.1rem; }
 
-  /* 2. ПОКАЗЫВАЕМ НИЖНЕЕ МЕНЮ */
+  /* 2. ПОКАЗЫВАЕМ НИЖНЕЕ МЕНЮ (ВОТ ОН, ГЛАВНЫЙ БЛОК) */
   .mobile-bottom-nav {
     display: flex !important;
     position: fixed;
@@ -287,16 +287,12 @@ p { margin-bottom: 16px; }
 }
 
 /* =========================================
-   16. АДАПТИВНОСТЬ (МОБИЛЬНЫЕ)
+   МОБИЛЬНЫЕ ТЕЛЕФОНЫ (до 768px)
    ========================================= */
 @media (max-width: 768px) {
-  .header-inner { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; justify-content: center; }
-  .nav-links { display: none !important; }
-  .header-inner > .btn { display: none !important; }
-  .brand { justify-content: center; font-size: 1.1rem; }
+  /* ... ТУТ ОСТАВЬТЕ ТОЛЬКО МОБИЛЬНЫЕ СТИЛИ ДЛЯ ПЕРВОГО ЭКРАНА И КАРТОЧЕК ... */
 
-  .hero { height: auto !important; min-height: calc(100svh - 70px) !important; padding: 60px 0 40px 0 !important; background-image: url('../img/hero.mob.png') !important; background-position: 80% !important; background-size: cover !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; }
-  .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0); z-index: 1; }
+  .hero { background-image: url('../img/hero.mob.png') !important; background-position: 80% center !important; min-height: calc(100svh - 70px) !important; padding: 60px 0 40px 0 !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; }
   .hero .container { position: relative !important; z-index: 2 !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 0 20px !important; margin-top: auto !important; padding-bottom: 60px !important; }
   .hero h1 { font-size: 2rem !important; color: #1A2B4C !important; text-shadow: none !important; margin-bottom: 16px !important; text-align: left !important; line-height: 1.2 !important; }
   .hero p { font-size: 0.95rem !important; color: #4A5568 !important; text-shadow: none !important; margin-bottom: 30px !important; text-align: left !important; line-height: 1.4 !important; }
@@ -317,8 +313,7 @@ p { margin-bottom: 16px; }
   .doc-actions { width: 100%; }
   .doc-btn { flex: 1; text-align: center; }
 
-  .contacts-container { padding: 24px; background-position: right center; }
-  .contacts-info { padding: 20px; }
+  .contacts-container { padding: 24px; }
   .contacts-map-wrapper { min-height: 300px; }
 
   .form-wrapper { padding: 24px; }
@@ -328,19 +323,15 @@ p { margin-bottom: 16px; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
 
-  /* Нижнее меню */
-  .mobile-bottom-nav { display: flex; position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; justify-content: space-around; padding: 8px 0; border-top: 1px solid var(--border); }
-  .mobile-nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-muted); font-size: 0.65rem; gap: 4px; transition: color 0.3s; }
-  .mobile-nav-item.active, .mobile-nav-item:hover { color: var(--primary); }
-
   /* Мобильный Cookie-баннер */
   #cookie-banner { flex-direction: column !important; align-items: stretch !important; gap: 16px !important; padding: 20px !important; bottom: 80px !important; width: calc(100% - 32px) !important; left: 16px !important; transform: none !important; }
   .btn-cookie { width: 100% !important; padding: 14px !important; font-size: 1.1rem !important; margin: 0 !important; }
-
-  body { padding-bottom: 70px; }
 }
 
-/* Скрываем мобильное меню на ПК */
-@media (min-width: 769px) {
+/* =========================================
+   СКРЫВАЕМ НИЖНЕЕ МЕНЮ НА ПК (шире 1201px)
+   ========================================= */
+@media (min-width: 1201px) {
   .mobile-bottom-nav { display: none !important; }
+}
 }
