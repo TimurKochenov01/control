@@ -175,5 +175,22 @@
     }
   });
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ищем блок с ошибками (красный текст)
+    const hasErrors = document.querySelector('.form-group div[style*="color: #E53E3E"]');
+
+    // Если ошибки есть — скроллим к форме
+    if (hasErrors) {
+      const formSection = document.getElementById('appeal');
+      if (formSection) {
+        // Небольшая задержка, чтобы страница успела прогрузиться
+        setTimeout(() => {
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  });
+</script>
 </body>
 </html>
