@@ -5,6 +5,7 @@
   <meta charset="utf-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}АНО «Общественный Комитет»{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/logo.svg' %}">
 
   <!-- Шрифт Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +17,14 @@
   <link rel="stylesheet" href="{% static 'css/base.css' %}?v=2">
 </head>
 <body>
+  <!-- ПРЕЛОАДЕР -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <img src="{% static 'img/logo.svg' %}" alt="Логотип" class="preloader-logo">
+    </div>
+  </div>
+
+
 
   <!-- Шапка сайта -->
   {% include 'includes/header.html' %}
@@ -192,5 +201,17 @@
     }
   });
 </script>
+<script>
+  window.addEventListener('load', function() {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      // Задержка в 1.5 секунды, чтобы пользователь успел увидеть анимацию логотипа
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+      }, 1500);
+    }
+  });
+</script>
+
 </body>
 </html>
