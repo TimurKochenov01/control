@@ -25,89 +25,7 @@
    ========================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-/* =========================================
-   ПРЕЛОАДЕР
-   ========================================= */
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffffff; /* Фон прелоадера (можно поменять на var(--primary)) */
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
-}
 
-#preloader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.preloader-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-/* АНИМАЦИЯ ПОЯВЛЕНИЯ ЛОГОТИПА */
-.preloader-logo {
-  width: 150px; /* Размер логотипа на экране загрузки */
-  height: auto;
-
-  /* Изначально логотип прозрачный и уменьшенный */
-  opacity: 0;
-  transform: scale(0.8);
-
-  /* Запускаем анимацию появления (занимает 1.2 секунды) */
-  animation: fadeInScale 1.2s ease-out forwards;
-}
-
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Легкая пульсация после появления (начинается с задержкой) */
-.preloader-logo.pulse {
-  animation: fadeInScale 1.2s ease-out forwards, pulseLogo 2s 1.2s infinite ease-in-out;
-}
-
-@keyframes pulseLogo {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Крутящийся спиннер под логотипом (появляется чуть позже) */
-.preloader-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #E2E8F0;
-  border-top-color: #A97E39; /* Золотой */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  opacity: 0;
-  animation: spin 1s linear infinite, fadeIn 1s 0.5s forwards; /* Появляется через 0.5 сек */
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
 body {
   font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
@@ -117,6 +35,42 @@ body {
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* =========================================
+   ПРЕЛОАДЕР
+   ========================================= */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#preloader.hidden { opacity: 0; visibility: hidden; }
+
+.preloader-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+.preloader-logo {
+  width: 150px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInScale 1.2s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* =========================================
    3. ТИПОГРАФИКА
@@ -188,68 +142,14 @@ p { margin-bottom: 16px; }
 /* =========================================
    8. НАПРАВЛЕНИЯ
    ========================================= */
-.bento-directions-wrapper {
-  grid-column: span 2;
-  margin-top: 24px;
-}
+.bento-directions-wrapper { grid-column: span 2; margin-top: 24px; }
+.bento-directions-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; width: 100%; }
+.direction-mini-card { width: 100%; height: auto; background: #ffffff; border-radius: 16px; transition: all 0.3s; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid var(--border); }
+.direction-mini-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.direction-img { width: 100%; height: 320px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+.direction-content { width: 100%; padding: 24px 20px; display: flex; align-items: center; justify-content: center; flex-direction: column; background: #ffffff; text-align: center; flex-grow: 1; }
+.direction-mini-title { color: var(--primary); font-family: 'Montserrat', sans-serif; font-size: 0.96rem; font-weight: 600; line-height: 1.4; margin: 0; word-wrap: break-word; }
 
-.bento-directions-row {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Ровно 5 одинаковых колонок */
-  gap: 16px; /* Расстояние между карточками */
-  width: 100%;
-}
-
-/* Сама карточка */
-.direction-mini-card {
-  width: 100%; /* Карточка занимает всю ширину своей колонки */
-  height: auto;
-  background: #ffffff;
-  border-radius: 16px;
-  transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  border: 1px solid var(--border);
-}
-.direction-mini-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* Блок с картинкой */
-.direction-img {
-  width: 100%;
-  height: 320px; /* Высота картинки (как на макете) */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Блок с текстом */
-.direction-content {
-  width: 100%; /* ШИРИНА 100% (исправлено с 75px) */
-  padding: 24px 20px; /* Отступы внутри блока с текстом */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: #ffffff;
-  text-align: center;
-  flex-grow: 1; /* Занимает оставшееся место */
-}
-
-/* Сам заголовок */
-.direction-mini-title {
-  color: var(--primary);
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.96rem; /* Размер шрифта (как на макете) */
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0;
-  word-wrap: break-word;
-}
 /* =========================================
    9. РЕКВИЗИТЫ
    ========================================= */
@@ -278,58 +178,9 @@ p { margin-bottom: 16px; }
 .doc-btn:hover { background: var(--primary); color: #ffffff; }
 
 /* =========================================
-   10. КОНТАКТЫ (С ФОНОМ contant.png)
+   10. КОНТАКТЫ
    ========================================= */
-.contacts-container {
-  max-width: 1100px;
-  margin: 0 auto;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  border: 1px solid var(--border);
-
-  /* ДЕЛАЕМ КАРТОЧКУ СНОВА БЕЛОЙ */
-  background-color: #ffffff;
-  background-image: none; /* Убираем картинку из карточки */
-}
-/* Соцсети */
-.contact-socials {
-  margin-top: 16px;
-}
-
-.contact-socials h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-}
-
-.social-links {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: #F0F4F8;
-  color: var(--primary);
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.social-btn:hover {
-  background: var(--primary);
-  color: #ffffff;
-}
-
+.contacts-container { max-width: 1100px; margin: 0 auto; border-radius: 24px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid var(--border); background-color: #ffffff; background-image: none; }
 .contacts-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
 .contacts-info { display: flex; flex-direction: column; gap: 24px; background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 .contact-item { display: flex; align-items: flex-start; gap: 16px; }
@@ -340,7 +191,7 @@ p { margin-bottom: 16px; }
 .contact-socials { margin-top: 16px; }
 .contact-socials h4 { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; }
 .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
-.social-btn { padding: 10px 20px; background: #F0F4F8; color: var(--primary); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
+.social-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #F0F4F8; color: var(--primary); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; }
 .social-btn:hover { background: var(--primary); color: #ffffff; }
 .contacts-map-wrapper { height: 100%; min-height: 400px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 .contacts-map { width: 100%; height: 100%; border: none; display: block; }
@@ -396,67 +247,34 @@ p { margin-bottom: 16px; }
 .cookie-link { color: var(--primary-light); font-weight: 600; text-decoration: underline; }
 .btn-cookie { padding: 10px 24px; white-space: nowrap; font-size: 0.95rem; border-radius: 8px; }
 
-/* =========================================
 /* =========================================================
    АДАПТИВНОСТЬ (ПЛАНШЕТЫ И ТЕЛЕФОНЫ до 1200px)
    ========================================================= */
 @media (max-width: 1200px) {
-
-  /* 1. СКРЫВАЕМ ВЕРХНЕЕ МЕНЮ */
   .nav-links { display: none !important; }
   .header-inner > .btn { display: none !important; }
-
-  /* Шапка: логотип по центру, без меню */
   .header-inner { flex-direction: column; height: auto; padding: 15px 0; gap: 15px; justify-content: center; }
   .brand { justify-content: center; font-size: 1.1rem; }
 
-  /* 2. ПОКАЗЫВАЕМ НИЖНЕЕ МЕНЮ (ВОТ ОН, ГЛАВНЫЙ БЛОК) */
-  .mobile-bottom-nav {
-    display: flex !important;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-    z-index: 1000;
-    justify-content: space-around;
-    padding: 8px 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .mobile-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.65rem;
-    gap: 4px;
-    transition: color 0.3s;
-  }
-
+  .mobile-bottom-nav { display: flex !important; position: fixed; bottom: 0; left: 0; width: 100%; background: #ffffff; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000; justify-content: space-around; padding: 8px 0; border-top: 1px solid var(--border); }
+  .mobile-nav-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: var(--text-muted); font-size: 0.65rem; gap: 4px; transition: color 0.3s; }
   .mobile-nav-item.active, .mobile-nav-item:hover { color: var(--primary); }
 
-  /* 3. ОБЩИЕ СТИЛИ ДЛЯ ПЛАНШЕТОВ */
   .section { padding: 40px 0; }
   .container { max-width: 100%; padding: 0 20px; }
   .bento-grid { grid-template-columns: 1fr; gap: 20px; }
   .requisites-grid, .contacts-grid { grid-template-columns: 1fr; }
   .bento-directions-row { grid-template-columns: repeat(3, 1fr); gap: 16px; }
 
-  /* Первый экран на планшетах */
   .hero { height: auto !important; min-height: 80vh !important; padding: 80px 0 !important; background-position: 70% center !important; }
   .hero .container { padding-left: 20px !important; padding-right: 20px !important; padding-top: 40px !important; }
   .hero h1 { font-size: 3rem !important; text-align: center !important; }
   .hero p { font-size: 1rem !important; text-align: center !important; margin-left: auto !important; margin-right: auto !important; }
   .hero .btn { display: block !important; margin: 0 auto !important; width: 100% !important; max-width: 400px !important; text-align: center !important; }
 
-  /* Форма на планшетах */
   .form-grid { grid-template-columns: 1fr !important; }
   .form-grid .full-width { grid-column: span 1 !important; }
 
-  /* Отступ снизу, чтобы нижнее меню не перекрывало контент */
   body { padding-bottom: 70px; }
 }
 
@@ -464,8 +282,6 @@ p { margin-bottom: 16px; }
    МОБИЛЬНЫЕ ТЕЛЕФОНЫ (до 768px)
    ========================================= */
 @media (max-width: 768px) {
-  /* ... ТУТ ОСТАВЬТЕ ТОЛЬКО МОБИЛЬНЫЕ СТИЛИ ДЛЯ ПЕРВОГО ЭКРАНА И КАРТОЧЕК ... */
-
   .hero { background-image: url('../img/hero.mob.png') !important; background-position: 80% center !important; min-height: calc(100svh - 70px) !important; padding: 60px 0 40px 0 !important; display: flex !important; flex-direction: column !important; justify-content: space-between !important; }
   .hero .container { position: relative !important; z-index: 2 !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; padding: 0 20px !important; margin-top: auto !important; padding-bottom: 60px !important; }
   .hero h1 { font-size: 2rem !important; color: #1A2B4C !important; text-shadow: none !important; margin-bottom: 16px !important; text-align: left !important; line-height: 1.2 !important; }
@@ -475,36 +291,12 @@ p { margin-bottom: 16px; }
   .bento-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; }
   .bento-about { width: 100% !important; height: auto !important; max-height: 400px !important; overflow: hidden !important; }
   .about-scroll-box { max-height: 280px !important; overflow-y: auto !important; }
-  /* --- НАПРАВЛЕНИЯ НА МОБИЛКЕ (СЕТКА) --- */
-  .bento-directions-row {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important; /* Два ровных столбика */
-    gap: 12px !important; /* Небольшое расстояние между карточками */
-  }
 
-  .direction-mini-card {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  /* Делаем картинки одинаковой высоты и пропорций */
-  .direction-img {
-    height: 140px !important; /* Высота картинки на телефоне */
-    background-size: cover !important;
-    background-position: center !important;
-  }
-
-  /* Уменьшаем отступы внутри текста */
-  .direction-content {
-    padding: 12px 10px !important;
-  }
-
-  /* Делаем шрифт чуть меньше */
-  .direction-mini-title {
-    font-size: 0.85rem !important;
-    line-height: 1.3 !important;
-  }
-}
+  .bento-directions-row { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .direction-mini-card { width: 100% !important; height: auto !important; }
+  .direction-img { height: 140px !important; background-size: cover !important; background-position: center !important; }
+  .direction-content { padding: 12px 10px !important; }
+  .direction-mini-title { font-size: 0.85rem !important; line-height: 1.3 !important; }
 
   .req-row { flex-direction: column; gap: 16px; border-bottom: none; }
   .req-card-white { padding: 24px; }
@@ -518,13 +310,9 @@ p { margin-bottom: 16px; }
   .contacts-map-wrapper { min-height: 300px; }
 
   .form-wrapper { padding: 24px; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-grid .full-width { grid-column: span 1; }
   .form-group input, .form-group textarea { font-size: 16px; }
-
   .footer-grid { grid-template-columns: 1fr; gap: 24px; text-align: center; }
 
-  /* Мобильный Cookie-баннер */
   #cookie-banner { flex-direction: column !important; align-items: stretch !important; gap: 16px !important; padding: 20px !important; bottom: 80px !important; width: calc(100% - 32px) !important; left: 16px !important; transform: none !important; }
   .btn-cookie { width: 100% !important; padding: 14px !important; font-size: 1.1rem !important; margin: 0 !important; }
 }
@@ -534,5 +322,4 @@ p { margin-bottom: 16px; }
    ========================================= */
 @media (min-width: 1201px) {
   .mobile-bottom-nav { display: none !important; }
-}
 }
