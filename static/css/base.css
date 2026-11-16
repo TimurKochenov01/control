@@ -475,9 +475,36 @@ p { margin-bottom: 16px; }
   .bento-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; }
   .bento-about { width: 100% !important; height: auto !important; max-height: 400px !important; overflow: hidden !important; }
   .about-scroll-box { max-height: 280px !important; overflow-y: auto !important; }
-  .bento-directions-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .direction-mini-card { height: 200px; }
-  .direction-mini-title { font-size: 0.85rem; }
+  /* --- НАПРАВЛЕНИЯ НА МОБИЛКЕ (СЕТКА) --- */
+  .bento-directions-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Два ровных столбика */
+    gap: 12px !important; /* Небольшое расстояние между карточками */
+  }
+
+  .direction-mini-card {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Делаем картинки одинаковой высоты и пропорций */
+  .direction-img {
+    height: 140px !important; /* Высота картинки на телефоне */
+    background-size: cover !important;
+    background-position: center !important;
+  }
+
+  /* Уменьшаем отступы внутри текста */
+  .direction-content {
+    padding: 12px 10px !important;
+  }
+
+  /* Делаем шрифт чуть меньше */
+  .direction-mini-title {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+  }
+}
 
   .req-row { flex-direction: column; gap: 16px; border-bottom: none; }
   .req-card-white { padding: 24px; }
