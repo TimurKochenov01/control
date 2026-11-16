@@ -89,20 +89,20 @@
       <div class="bento-directions-wrapper" id="directions">
         <span class="bento-badge" style="margin-bottom: 16px; display: inline-block;">Наши направления</span>
         <div class="bento-directions-row">
-                     {% for d in DIRECTIONS %}
-            <!-- Заменили <a> на <div> и убрали href -->
-            <div class="direction-mini-card" style="position: relative; display: flex; flex-direction: column; justify-content: flex-end; {% if d.image %}background-image: url('{{ d.image.url }}'); background-size: cover; background-position: center;{% endif %}">
+  {% for d in DIRECTIONS %}
+    <div class="direction-mini-card">
+      <!-- 1. Блок с картинкой -->
+      <div class="direction-img" style="background-image: url('{{ d.image.url }}');"></div>
 
-              <!-- Контент карточки (текст) -->
-              <div style="position: relative; z-index: 2;">
-                <h4 class="direction-mini-title">{{ d.title }}</h4>
-                <p class="direction-mini-desc">{{ d.description|truncatechars:60 }}</p>
-              </div>
-            </div>
-          {% empty %}
-            <p style="grid-column: span 5; text-align: center; color: var(--text-muted);">Направления пока не добавлены.</p>
-          {% endfor %}
-        </div>
+      <!-- 2. Блок с текстом -->
+      <div class="direction-content">
+        <h4 class="direction-mini-title">{{ d.title }}</h4>
+      </div>
+    </div>
+  {% empty %}
+    <p style="text-align: center; color: var(--text-muted);">Направления пока не добавлены.</p>
+  {% endfor %}
+</div>
       </div>
 
     </div>

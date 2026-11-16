@@ -188,13 +188,68 @@ p { margin-bottom: 16px; }
 /* =========================================
    8. НАПРАВЛЕНИЯ
    ========================================= */
-.bento-directions-wrapper { grid-column: span 2; margin-top: 24px; }
-.bento-directions-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-.direction-mini-card { width: 100%; height: 350px; background: var(--primary); border-radius: 16px; transition: all 0.3s; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-.direction-mini-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-.direction-mini-card > div { width: 100%; padding: 15px; position: relative; z-index: 2; text-align: left; display: flex; justify-content: center; flex-direction: column; }
-.direction-mini-title { color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 600; line-height: 1.4; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); margin-bottom: 0; }
+.bento-directions-wrapper {
+  grid-column: span 2;
+  margin-top: 24px;
+}
 
+.bento-directions-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Ровно 5 одинаковых колонок */
+  gap: 16px; /* Расстояние между карточками */
+  width: 100%;
+}
+
+/* Сама карточка */
+.direction-mini-card {
+  width: 100%; /* Карточка занимает всю ширину своей колонки */
+  height: auto;
+  background: #ffffff;
+  border-radius: 16px;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid var(--border);
+}
+.direction-mini-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Блок с картинкой */
+.direction-img {
+  width: 100%;
+  height: 320px; /* Высота картинки (как на макете) */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Блок с текстом */
+.direction-content {
+  width: 100%; /* ШИРИНА 100% (исправлено с 75px) */
+  padding: 24px 20px; /* Отступы внутри блока с текстом */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #ffffff;
+  text-align: center;
+  flex-grow: 1; /* Занимает оставшееся место */
+}
+
+/* Сам заголовок */
+.direction-mini-title {
+  color: var(--primary);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.96rem; /* Размер шрифта (как на макете) */
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  word-wrap: break-word;
+}
 /* =========================================
    9. РЕКВИЗИТЫ
    ========================================= */
