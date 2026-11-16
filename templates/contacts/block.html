@@ -4,9 +4,9 @@
     <!-- Левая часть: Контактная информация -->
     <div class="contacts-info">
 
-      <!-- Карточка 1: Адрес -->
+      <!-- Адрес -->
       <div class="contact-item">
-        <div class="contact-icon" style="background: #1A365D; color: #ffffff;">
+        <div class="contact-icon" style="background: #1A365D; color: #ffffff; border: none;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
         </div>
         <div>
@@ -15,13 +15,10 @@
         </div>
       </div>
 
-
-
-
-      <!-- Карточка 3: Email -->
+      <!-- Email -->
       <div class="contact-item">
-        <div class="contact-icon" style="background: #1A365D; color: #ffffff;">
-         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <div class="contact-icon" style="background: #A97E39; color: #ffffff; border: none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
         </div>
         <div>
           <h4>Email</h4>
@@ -39,26 +36,24 @@
           {% if CONTACTS.social_tg %}
             <a href="{{ CONTACTS.social_tg }}" target="_blank" class="social-btn">Telegram</a>
           {% endif %}
-          {% if CONTACTS.social_ok %}
-            <a href="{{ CONTACTS.social_ok }}" target="_blank" class="social-btn">Одноклассники</a>
+          {% if CONTACTS.social_inst %}
+            <a href="{{ CONTACTS.social_inst }}" target="_blank" class="social-btn">Instagram</a>
           {% endif %}
         </div>
       </div>
 
-    </div>
+    </div> <!-- ЗАКРЫВАЕМ ЛЕВУЮ КОЛОНКУ -->
 
-        <!-- Правая часть: Карта -->
+    <!-- Правая часть: Карта -->
     <div class="contacts-map-wrapper">
       {% if CONTACTS.yandex_map_url %}
-        <!-- Оставили только iframe, убрали лишние div и a, задали 100% ширины/высоты -->
-        <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A232dad335cff2241ad25bd9e461151703768e14b35ef07bd0e16d2d174fb31f4&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
+       <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A232dad335cff2241ad25bd9e461151703768e14b35ef07bd0e16d2d174fb31f4&amp;source=constructor" width="500" height="400" frameborder="0"></iframe>
       {% else %}
         <div class="contacts-map-placeholder">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#A0AEC0" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           <p>Яндекс.Карта (добавьте ссылку в админке)</p>
         </div>
       {% endif %}
     </div>
 
-  </div>
-</div>
+  </div> <!-- ЗАКРЫВАЕМ СЕТКУ -->
+</div> <!-- ЗАКРЫВАЕМ КОНТЕЙНЕР -->

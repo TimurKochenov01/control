@@ -7,7 +7,7 @@ class ContactInfo(models.Model):
     email = models.EmailField('Email', blank=True)
     social_vk = models.URLField('ВКонтакте', blank=True)
     social_tg = models.URLField('Telegram', blank=True)
-    social_ok = models.URLField('Одноклассники', blank=True)
+    social_inst = models.URLField('Instagram', blank=True)
     yandex_map_url = models.URLField(
         'Ссылка на Яндекс.Карту (widget)',
         blank=True,

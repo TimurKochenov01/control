@@ -237,6 +237,43 @@ p { margin-bottom: 16px; }
   background-color: #ffffff;
   background-image: none; /* Убираем картинку из карточки */
 }
+/* Соцсети */
+.contact-socials {
+  margin-top: 16px;
+}
+
+.contact-socials h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #F0F4F8;
+  color: var(--primary);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.social-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+}
 
 .contacts-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; position: relative; z-index: 2; }
 .contacts-info { display: flex; flex-direction: column; gap: 24px; background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 16px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
